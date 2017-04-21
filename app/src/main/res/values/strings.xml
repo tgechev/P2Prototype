@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Mood N Music</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="mood_question">How do you feel?</string>
+    <string name="genre_question">What are you listening to?</string>
+    <string name="mood_bad">Bad</string>
+    <string name="mood_neutral">Neutral</string>
+    <string name="mood_good">Good</string>
+    <string name="mood_smiley">mood smiley</string>
+    <string name="accept">Accept</string>
+    <string-array name="genres">
+        <item>Genre</item>
+        <item>Rock</item>
+        <item>Pop</item>
+        <item>Jazz</item>
+    </string-array>
+</resources>
