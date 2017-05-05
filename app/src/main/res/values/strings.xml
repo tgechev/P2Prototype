@@ -1,18 +1,23 @@
 <resources>
     <string name="app_name">Mood N Music</string>
     <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="action_tutorial">Tutorial</string>
     <string name="mood_question">How do you feel?</string>
-    <string name="genre_question">What are you listening to?</string>
+    <string name="genre_question">What genre are you listening to?</string>
     <string name="mood_bad">Bad</string>
     <string name="mood_neutral">Neutral</string>
     <string name="mood_good">Good</string>
     <string name="mood_smiley">mood smiley</string>
     <string name="accept">Accept</string>
-    <string-array name="genres">
-        <item>Genre</item>
-        <item>Rock</item>
-        <item>Pop</item>
-        <item>Jazz</item>
-    </string-array>
+    <string name="notification_name">Display notification</string>
+    <string name="tutorial_intro_title">Introduction</string>
+    <string name="tutorial_intro_desc">Welcome, Mood N Music helps you reflect on your mood based on the type of music you listen to by gathering information about the two and displaying it in a visually appealing way.</string>
+    <string name="tutorial_mood_title">Registering mood</string>
+    <string name="tutorial_mood_desc">On the Input Data page, select a smiley according to your mood to register it.</string>
+    <string name="tutorial_genre_title">Selecting genre</string>
+    <string name="tutorial_genre_desc">After registering your mood you can select the genre you are listening to from a dropdown list.</string>
+    <string name="tutorial_dataVis_title">Reviewing your data</string>
+    <string name="tutorial_dataVis_desc">After enough data has been gathered, it will be visualised in the Your Data tab, which can be accessed by swiping or tapping on Your Data.</string>
+    <string name="tutorial_image">tutorial image</string>
+    <string name="warning_text">NOTE: Data visualization will appear, after enough data has been gathered.</string>
 </resources>

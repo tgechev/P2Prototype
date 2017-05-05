@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference     android:title="Enable reminder notification"
+        android:summary="Select if and how often a reminder notification should appear"
+        android:key="notification_preference"
+        android:defaultValue="3"
+        android:entries="@array/notification_names"
+        android:entryValues="@array/notification_values" />
+</PreferenceScreen>

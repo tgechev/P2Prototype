@@ -1,7 +1,7 @@
 package b219.p2prototype;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.support.v13.app.FragmentStatePagerAdapter;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 
@@ -23,6 +23,7 @@ public abstract class SmartFragmentStatePagerAdapter extends FragmentStatePagerA
 	public Object instantiateItem(ViewGroup container, int position) {
 		Fragment fragment = (Fragment) super.instantiateItem(container, position);
 		registeredFragments.put(position, fragment);
+		System.out.println("instantiateItem");
 		return fragment;
 	}
 
@@ -30,6 +31,7 @@ public abstract class SmartFragmentStatePagerAdapter extends FragmentStatePagerA
 	@Override
 	public void destroyItem(ViewGroup container, int position, Object object) {
 		registeredFragments.remove(position);
+		System.out.println("destroyItem");
 		super.destroyItem(container, position, object);
 	}
 

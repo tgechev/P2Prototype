@@ -1,8 +1,8 @@
 package b219.p2prototype;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +24,8 @@ public class RootFragment extends Fragment {
      * When this container fragment is created, we fill it with our first
      * "real" fragment
      */
-        transaction.replace(R.id.root_frame, new MoodFragment());
-
-        transaction.commit();
+        transaction.replace(R.id.root_frame, new MoodFragment())
+        .commit();
 
         return view;
     }

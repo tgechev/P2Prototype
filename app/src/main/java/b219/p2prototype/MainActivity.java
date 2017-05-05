@@ -1,15 +1,17 @@
 package b219.p2prototype;
 
+
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentTransaction;
+
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,55 +19,98 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import android.widget.ImageView;
-import android.widget.TextView;
+import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity implements GenreFragment.OnEntryRegisteredListener/*implements MoodFragment.OnMoodSelectedListener*/{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
+     * {@link //FragmentPagerAdapter} derivative, which will keep every
      * loaded fragment in memory. If this becomes too memory intensive, it
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+
+    static final String USER_INPUT = "USER_INPUT";
+    //DataVisFragment dataVisFrag = new DataVisFragment();
+    RootFragment rootFrag = new RootFragment();
+    ArrayList<UserInput> userIn = new ArrayList<UserInput>();
+    ViewPager mViewPager;
+    SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
      */
-    private ViewPager mViewPager;
+
+    public void onEntryRegistered(ArrayList<UserInput> userInput){
+        userIn = userInput;
+
+        Toast t = Toast.makeText(this, "Genre chosen for last input: "+userIn.get(userIn.size()-1).getGenre(), Toast.LENGTH_SHORT);
+        t.show();
+    }
+
+    /*public void onMoodSelected(int moodId){
+        //DataVisFragment dVisFrag = (DataVisFragment) getFragmentManager().findFragmentById(R.id.vis_fragment);
+        //DataVisFragment newFragment = new DataVisFragment();
+        //Bundle args = new Bundle();
+        //args.putInt(DataVisFragment.RED_VAL, 255);
+        //args.putInt(DataVisFragment.GREEN_VAL, 0);
+        //args.putInt(DataVisFragment.BLUE_VAL, 0);
+        //newFragment.setArguments(args);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        PApplet dataVis = new DataVis();
+        PFragment fragment = new PFragment();
+        fragment.setSketch(dataVis);
+        fragmentManager.beginTransaction()
+                .replace(R.id.vis_fragment, fragment)
+                .commit();
+        //Toast toast = Toast.makeText(getApplicationContext(), "onMoodSelected() called", Toast.LENGTH_SHORT);
+        //toast.show();
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+        // Disable "Drag" for AppBarLayout (i.e. User can't scroll appBarLayout by directly touching appBarLayout - User can only scroll appBarLayout by only using scrollContent)
+        if (appBarLayout.getLayoutParams() != null) {
+            CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
+            AppBarLayout.Behavior appBarLayoutBehaviour = new AppBarLayout.Behavior();
+            appBarLayoutBehaviour.setDragCallback(new AppBarLayout.Behavior.DragCallback() {
+                @Override
+                public boolean canDrag(@NonNull AppBarLayout appBarLayout) {
+                    return false;
+                }
+            });
+            layoutParams.setBehavior(appBarLayoutBehaviour);
+        }
+
+
+        /*Bundle args = new Bundle();
+        args.putParcelableArrayList(USER_INPUT, userIn);
+        dataVisFrag.setArguments(args);*/
+
 
     }
+
 
 
     @Override
@@ -84,7 +129,24 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent myIntent = new Intent(this, SettingsActivity.class);
+            startActivity(myIntent);
+        }
+        else if(id == R.id.action_tutorial){
+            Intent tutIntent = new Intent(this, TutorialActivity.class);
+            startActivity(tutIntent);
+        }
+        else{
+
+            mViewPager.getAdapter().notifyDataSetChanged();
+            /*FragmentManager fragmentManager = getFragmentManager();
+            //Bundle args = new Bundle();
+            //args.putInt(BACKGROUND_COLOR, 255);
+            Fragment fragment = new DataVis();
+            //fragment.setArguments(args);
+            fragmentManager.beginTransaction()
+                    .replace(R.id.vis_fragment, fragment)
+                    .commit();*/
         }
 
         return super.onOptionsItemSelected(item);
@@ -119,17 +181,20 @@ public class MainActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
                 View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+                Toast t = Toast.makeText(getContext(), "on create view on placeholder fragment called", Toast.LENGTH_SHORT);
+                t.show();
+
             return rootView;
         }
     }
 
     /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
+     * A {@link //FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
-    public class SectionsPagerAdapter extends SmartFragmentStatePagerAdapter {
+    private class SectionsPagerAdapter extends SmartFragmentStatePagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        private SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -137,9 +202,20 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             if (position == 0)
-                return new RootFragment();
-            else
-                return new PlaceholderFragment();
+                return rootFrag;
+            else {
+                DataVisFragment dataVisFrag = new DataVisFragment();
+                Bundle args = new Bundle();
+                args.putParcelableArrayList(USER_INPUT, userIn);
+                dataVisFrag.setArguments(args);
+
+                return dataVisFrag;
+            }
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
         }
 
         @Override
@@ -158,5 +234,7 @@ public class MainActivity extends AppCompatActivity {
             }
             return null;
         }
+
+
     }
 }

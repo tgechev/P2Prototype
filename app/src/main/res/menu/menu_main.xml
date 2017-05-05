@@ -4,7 +4,15 @@
     tools:context="b219.p2prototype.MainActivity">
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:orderInCategory="1"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_tutorial"
+        android:orderInCategory="2"
+        android:title="@string/action_tutorial"/>
+    <item
+        android:id="@+id/action_draw_vis_test"
+        android:orderInCategory="3"
+        android:title="Visualize data"/>
 </menu>

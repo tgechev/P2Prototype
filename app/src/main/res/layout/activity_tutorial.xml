@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="308dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/indicator_layout"
+        android:layout_centerHorizontal="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <FrameLayout
+        android:id="@+id/indicator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/container"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="0dp"
+        android:background="@android:color/holo_blue_dark">
+
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="12dp"
+            android:layout_gravity="bottom"
+            android:layout_margin="24dp"
+            android:gravity="center_vertical|center_horizontal|center"
+            app:ci_drawable="@drawable/white_radius"
+            app:ci_gravity="center_vertical|center_horizontal" />
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/tutorial_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/indicator_layout"
+        android:layout_alignParentTop="false"
+        android:layout_alignRight="@+id/indicator_layout"
+        android:layout_marginTop="57dp"
+        android:background="@android:color/holo_blue_dark"
+        android:onClick="onClick"
+        android:text="Got it."
+        android:textColor="#ffff" />
+</RelativeLayout>
