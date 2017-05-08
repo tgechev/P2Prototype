@@ -7,14 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by trend on 21.4.2017 г..
- */
 
 public class RootFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
     /* Inflate the layout for this fragment */
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
@@ -26,7 +24,6 @@ public class RootFragment extends Fragment {
      */
         transaction.replace(R.id.root_frame, new MoodFragment())
         .commit();
-
         return view;
     }
 }

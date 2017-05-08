@@ -11,13 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import me.relex.circleindicator.CircleIndicator;
 
-/**
- * Created by trend on 30.4.2017 г..
- */
+
 
 public class TutorialActivity extends AppCompatActivity {
     @Override
@@ -109,23 +106,11 @@ public class TutorialActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 2 total pages.
+            // Show 4 total pages.
             return 4;
         }
-
-        /*@Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Input Data";
-                case 1:
-                    return "Your Data";
-            }
-            return null;
-        }*/
-
-
     }
+
     public void onClick(View view){
         finish();
     }

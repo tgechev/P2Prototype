@@ -11,6 +11,7 @@ import android.view.ViewGroup;
    Usage involves extending from SmartFragmentStatePagerAdapter as you would any other PagerAdapter.
 */
 public abstract class SmartFragmentStatePagerAdapter extends FragmentStatePagerAdapter {
+
 	// Sparse array to keep track of registered fragments in memory
 	private SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
 
@@ -23,7 +24,6 @@ public abstract class SmartFragmentStatePagerAdapter extends FragmentStatePagerA
 	public Object instantiateItem(ViewGroup container, int position) {
 		Fragment fragment = (Fragment) super.instantiateItem(container, position);
 		registeredFragments.put(position, fragment);
-		System.out.println("instantiateItem");
 		return fragment;
 	}
 
@@ -31,7 +31,6 @@ public abstract class SmartFragmentStatePagerAdapter extends FragmentStatePagerA
 	@Override
 	public void destroyItem(ViewGroup container, int position, Object object) {
 		registeredFragments.remove(position);
-		System.out.println("destroyItem");
 		super.destroyItem(container, position, object);
 	}
 

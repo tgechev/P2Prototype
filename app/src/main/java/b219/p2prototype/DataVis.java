@@ -3,30 +3,24 @@ package b219.p2prototype;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-
 import processing.core.PApplet;
-
 import static b219.p2prototype.MainActivity.USER_INPUT;
 
-/**
- * Created by trend on 25.4.2017 г..
- */
+
 
 public class DataVis extends PApplet {
 
     float maxL = 0;
     //float minL = 0;
-    float setL = 400;
+    float setL = 450;
 
     int tICount = 0;
 
 
     //int genreCount = 22;
-    String hexColor = "#58F74D";
     int numberOfGenres=0;
     int[][] input;
     //int moodCount = 5;
@@ -81,6 +75,8 @@ public class DataVis extends PApplet {
         for(int i = 0; i<strColours.length;i++)
             gColours[i] = Color.parseColor(strColours[i]);
 
+        System.out.println("Width: " + ((displayWidth/2.0f)-40.0f) + " setL: " + setL);
+
 
     }
     public void draw() {
@@ -97,9 +93,7 @@ public class DataVis extends PApplet {
         if (tICount >= 0) {
             for (int j = 0; j < input[0].length; j++) {//for each genre
                 for (int i = 0; i < input.length; i++) {// for each mood
-                    if (i == 0) {
-                    } else {
-                        if (i == 1) {
+                    if (i == 1) {
                             totalInput[j] = input[0][j] +2;
                         } else if (i == 2) {
                             totalInput[j] = input[0][j] + input[1][j]+4;
@@ -107,7 +101,6 @@ public class DataVis extends PApplet {
 
                         //counts total length/totalInput
                         totalInput[j] = input[0][j] + input[1][j] + input[2][j]+4;
-                    }
                 }
 
             }
@@ -188,22 +181,15 @@ public class DataVis extends PApplet {
 
         for(int i = 0; i<userIn.size(); i++) {
             for(int j = 0; j<numberOfGenres; j++) {
-                if(userIn.get(i).getMood()==0 && userIn.get(i).getGenre()==j) {
+                if(userIn.get(i).getMood()==0 && userIn.get(i).getGenre()==j+1) {
                     input[0][j]++;
                 }
-                else if(userIn.get(i).getMood()==1 && userIn.get(i).getGenre()==j) {
+                else if(userIn.get(i).getMood()==1 && userIn.get(i).getGenre()==j+1) {
                     input[1][j]++;
                 }
-                else if(userIn.get(i).getMood()==2 && userIn.get(i).getGenre()==j){
+                else if(userIn.get(i).getMood()==2 && userIn.get(i).getGenre()==j+1){
                     input[2][j]++;
                 }
-            }
-        }
-
-
-        for(int i = 0; i<input.length; i++) {
-            for(int j=0;j<input[0].length;j++) {
-                System.out.println("Mood: "+(i+1) + " Genre: " +(j+1) +": "+ input[i][j]);
             }
         }
     }

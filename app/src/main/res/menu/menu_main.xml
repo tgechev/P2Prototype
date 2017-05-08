@@ -15,4 +15,8 @@
         android:id="@+id/action_draw_vis_test"
         android:orderInCategory="3"
         android:title="Visualize data"/>
+    <item
+        android:id="@+id/action_reset_data"
+        android:orderInCategory="4"
+        android:title="Reset data"/>
 </menu>

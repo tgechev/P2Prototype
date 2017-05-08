@@ -10,6 +10,24 @@
         <item>Rock</item>
         <item>Pop</item>
         <item>Jazz</item>
+        <item>Alternative</item>
+        <item>Blues</item>
+        <item>Children’s Music</item>
+        <item>Classical</item>
+        <item>Comedy</item>
+        <item>Commercial</item>
+        <item>Country</item>
+        <item>Dance</item>
+        <item>Electronic</item>
+        <item>Hip-Hop/Rap</item>
+        <item>Holiday</item>
+        <item>Indie Pop</item>
+        <item>Instrumental</item>
+        <item>Latin</item>
+        <item>Opera</item>
+        <item>R&#038;B/Soul</item>
+        <item>Reggae</item>
+        <item>Singer/Songwriter</item>
     </string-array>
     <string-array name="notification_names">
         <item>Never</item>

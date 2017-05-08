@@ -6,34 +6,17 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import static b219.p2prototype.MainActivity.USER_INPUT;
 
 
-/**
- * Created by trend on 24.4.2017 г..
- */
+
 
 public class DataVisFragment extends Fragment {
 
 
-    //private static final String BACKGROUND_COLOR = "bck_color";
-    //private static final String USER_INPUT = "USER_INPUT";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //page = getArguments().getInt("someInt", 0);
-        //title = getArguments().getString("someTitle");
-
-        /*FragmentManager fragmentManager = getFragmentManager();
-        PApplet sketch = new DataVis();
-        PFragment fragment = new PFragment();
-        fragment.setSketch(sketch);
-        fragmentManager.beginTransaction()
-                .replace(R.id.vis_fragment, fragment)
-                .commit();*/
-
-
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
