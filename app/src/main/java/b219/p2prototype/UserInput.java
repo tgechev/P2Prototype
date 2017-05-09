@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 
 
-public class UserInput implements Parcelable{
+public class UserInput implements Parcelable, Comparable<UserInput>{
 
 
     private int mood;
@@ -62,24 +62,18 @@ public class UserInput implements Parcelable{
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + genre;
-        return result;
+    public int compareTo(UserInput input) {
+        if (input == null) return 1;
+
+        if (input.getGenre() < getGenre()) return 1;
+        if (input.getGenre() > getGenre()) return -1;
+        return 0;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        UserInput other = (UserInput) obj;
-        if (genre != other.genre)
-            return false;
-        return true;
+        if(obj == null)return false;
+        if(!(obj instanceof UserInput)) return false;
+        return compareTo((UserInput)obj) == 0;
     }
 }

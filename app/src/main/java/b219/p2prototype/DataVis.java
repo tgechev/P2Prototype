@@ -4,8 +4,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.TreeSet;
+
 import processing.core.PApplet;
 import static b219.p2prototype.MainActivity.USER_INPUT;
 
@@ -24,6 +24,8 @@ public class DataVis extends PApplet {
     int numberOfGenres=0;
     int[][] input;
     //int moodCount = 5;
+
+    String[] gNames;
 
     int[] gColours = new int[21];
     String[] strColours = {
@@ -55,6 +57,7 @@ public class DataVis extends PApplet {
 
 
     ArrayList<UserInput> userIn = new ArrayList<UserInput>();
+    ArrayList<UserInput> sortedList = new ArrayList<UserInput>();
 
 
     @Override
@@ -62,7 +65,9 @@ public class DataVis extends PApplet {
         super.onCreate(savedInstanceState);
         userIn = getArguments().getParcelableArrayList(USER_INPUT);
         System.out.println("DataVis, onCreate: "+ userIn);
-        if(!userIn.isEmpty()){
+
+        gNames = getResources().getStringArray(R.array.genres);
+        if(userIn!=null){
             listToArray();
         }
     }
@@ -94,13 +99,13 @@ public class DataVis extends PApplet {
             for (int j = 0; j < input[0].length; j++) {//for each genre
                 for (int i = 0; i < input.length; i++) {// for each mood
                     if (i == 1) {
-                            totalInput[j] = input[0][j] +2;
-                        } else if (i == 2) {
-                            totalInput[j] = input[0][j] + input[1][j]+4;
-                        }
+                        totalInput[j] = input[0][j] +2;
+                    } else if (i == 2) {
+                        totalInput[j] = input[0][j] + input[1][j]+4;
+                    }
 
-                        //counts total length/totalInput
-                        totalInput[j] = input[0][j] + input[1][j] + input[2][j]+4;
+                    //counts total length/totalInput
+                    totalInput[j] = input[0][j] + input[1][j] + input[2][j]+4;
                 }
 
             }
@@ -124,7 +129,8 @@ public class DataVis extends PApplet {
                 //println(input[0].length);
                 rotate(2*PI/input[0].length);
                 for (int i = 0; i < input.length; i++) {// for each mood
-                    stroke(10,10,10, 100);
+                    //stroke(10,10,10, 100);
+                    noStroke();
                     strokeWeight(1);
                     //System.out.println(j+" "+i+" "+input[i][j]);
                     if (i == 0) {
@@ -159,6 +165,75 @@ public class DataVis extends PApplet {
                 totalInput[j] = input[0][j] + input[1][j] + input[2][j]+4;
             }
         }
+
+        //Code for the Legend
+        translate(-width/2+30, 300);
+        //rotate(radians(45));
+        int legCount = 0;
+        int lineOffSet = 0;
+        int squareOffSet = 125;
+        int squareWH = 20;
+        int lineStart = 30;
+        int textAlign = 15;
+        for (int i = 0; i < input[0].length; i++) {
+
+            if (i < 4) {
+                stroke(gColours[i]);
+                noFill();
+                rect(0+(legCount*squareOffSet), 0 + lineOffSet, squareWH, squareWH);
+                fill(0);
+                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign + lineOffSet);
+                legCount++;
+                if (legCount == 4) {
+                    legCount = 0;
+                    lineOffSet += 30;
+                }
+            } else if (i > 3 && i < 8) {
+                stroke(gColours[i]);
+                noFill();
+                rect(0+(legCount*squareOffSet), lineOffSet, squareWH, squareWH);
+                fill(0);
+                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet);
+                legCount++;
+                if (legCount == 4) {
+                    legCount = 0;
+                    lineOffSet += 30;
+                }
+            } else if (i > 7 && i < 12) {
+                stroke(gColours[i]);
+                noFill();
+                rect(0+(legCount*squareOffSet), lineOffSet, squareWH, squareWH);
+                fill(0);
+                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet);
+                legCount++;
+                if (legCount == 4) {
+                    legCount = 0;
+                    lineOffSet += 30;
+                }
+            } else if (i > 11 && i < 16) {
+                stroke(gColours[i]);
+                noFill();
+                rect(0+(legCount*squareOffSet), lineOffSet, squareWH, squareWH);
+                fill(0);
+                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet);
+                legCount++;
+                if (legCount == 4) {
+                    legCount = 0;
+                    lineOffSet += 30;
+                }
+            } else if (i > 15 && i < 20) {
+                stroke(gColours[i]);
+                noFill();
+                rect(0+(legCount*squareOffSet), lineOffSet, squareWH, squareWH);
+                fill(0);
+                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet);
+                legCount++;
+                if (legCount == 4) {
+                    legCount = 0;
+                    lineOffSet += 30;
+                }
+            }
+        }
     }
 
 
@@ -166,30 +241,31 @@ public class DataVis extends PApplet {
 
 
     private void listToArray(){
-        HashSet<UserInput> userInHSet = new HashSet<UserInput>();
+        TreeSet<UserInput> userTree = new TreeSet<UserInput>();
+        for(UserInput q : userIn) userTree.add(q);
 
-        UserInput hSInput = null;
-        for (Iterator<UserInput> i = userIn.iterator(); i.hasNext();) {
-            hSInput = i.next();
-            userInHSet.add(hSInput);
-        }
-        numberOfGenres = userInHSet.size();
+        numberOfGenres = userTree.size();
+
+        sortedList = new ArrayList<UserInput>(userTree);
 
         input = new int[3][numberOfGenres];
         totalInput = new float[input[0].length];
         totalInputS = new float[input[0].length];
 
-        for(int i = 0; i<userIn.size(); i++) {
-            for(int j = 0; j<numberOfGenres; j++) {
-                if(userIn.get(i).getMood()==0 && userIn.get(i).getGenre()==j+1) {
-                    input[0][j]++;
-                }
-                else if(userIn.get(i).getMood()==1 && userIn.get(i).getGenre()==j+1) {
-                    input[1][j]++;
-                }
-                else if(userIn.get(i).getMood()==2 && userIn.get(i).getGenre()==j+1){
-                    input[2][j]++;
-                }
+        for(int i = 0; i<numberOfGenres; i++) {
+            for(int j = 0; j<userIn.size(); j++) {
+                if(sortedList.get(i).getGenre()==userIn.get(j).getGenre() && userIn.get(j).getMood()==0)
+                    input[0][i]++;
+                else if(sortedList.get(i).getGenre()==userIn.get(j).getGenre() && userIn.get(j).getMood()==1)
+                    input[1][i]++;
+                else if(sortedList.get(i).getGenre()==userIn.get(j).getGenre() && userIn.get(j).getMood()==2)
+                    input[2][i]++;
+            }
+        }
+
+        for(int i = 0; i<input.length; i++) {
+            for(int j=0;j<input[0].length;j++) {
+                System.out.println(input[i][j]);
             }
         }
     }

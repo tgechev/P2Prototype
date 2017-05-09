@@ -29,7 +29,6 @@ public class DataVisFragment extends Fragment {
             rootView = inflater.inflate(R.layout.fragment_vis, container, false);
             FragmentManager fragmentManager = getFragmentManager();
             Bundle args = new Bundle();
-
             args.putParcelableArrayList(USER_INPUT, getArguments().getParcelableArrayList(USER_INPUT));
             Fragment fragment = new DataVis();
             fragment.setArguments(args);

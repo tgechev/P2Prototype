@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static b219.p2prototype.MainActivity.USER_INPUT;
+import static b219.p2prototype.MoodFragment.MOOD_ID;
+
 
 public class GenreFragment extends Fragment {
 
@@ -24,8 +26,6 @@ public class GenreFragment extends Fragment {
         void onEntryRegistered(ArrayList<UserInput> userInput);
     }
 
-    private final String MOOD_ID = "MOOD_ID";
-    private static final String USER_INPUT = "USER_INPUT";
     private int moodClicked;
     ArrayList<UserInput> userIn = new ArrayList<UserInput>();
     Spinner genres;

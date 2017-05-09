@@ -10,12 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import static b219.p2prototype.MainActivity.USER_INPUT;
 
 
 public class MoodFragment extends Fragment {
 
-    private final String MOOD_ID = "MOOD_ID";
-    private final String USER_INPUT = "USER_INPUT";
+    static final String MOOD_ID = "MOOD_ID";
     Fragment genreFrag;
 
     @Override
