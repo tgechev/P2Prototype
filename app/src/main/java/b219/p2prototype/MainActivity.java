@@ -29,7 +29,11 @@ public class MainActivity extends AppCompatActivity implements GenreFragment.OnE
 
     static final String USER_INPUT = "USER_INPUT";
     RootFragment rootFrag = new RootFragment();
+
+
     ArrayList<UserInput> userIn = new ArrayList<UserInput>();
+
+
     ViewPager mViewPager;
     SectionsPagerAdapter mSectionsPagerAdapter;
 
@@ -129,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements GenreFragment.OnE
     }
 
 
-    private class SectionsPagerAdapter extends FragmentStatePagerAdapter {
+    private class SectionsPagerAdapter extends SmartFragmentStatePagerAdapter {
 
         private SectionsPagerAdapter(FragmentManager fm) {
             super(fm);

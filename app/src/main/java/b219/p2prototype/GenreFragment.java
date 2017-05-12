@@ -2,8 +2,10 @@ package b219.p2prototype;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,6 +74,17 @@ public class GenreFragment extends Fragment {
                     userIn.add(new UserInput(moodClicked, genres.getSelectedItemPosition()));
 
                     myCallBack.onEntryRegistered(userIn);
+                    //getFragmentManager().popBackStack();
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("Your entry has been registered!")
+                            //.setMessage("Your entry has been registered!")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    getFragmentManager().popBackStack();
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_info)
+                            .show();
                 }
 
             }
