@@ -157,7 +157,9 @@ public class DataVis extends PApplet {
 
 
                 strokeWeight(7);
-                arc(0, 0, (50 + ((input[0][j]/maxL)*setL) + ((input[1][j]/maxL)*setL) + ((input[2][j]/maxL)*setL)+4 +2)*2+7, (50 + ((input[0][j]/maxL)*setL) + ((input[1][j]/maxL)*setL) + ((input[2][j]/maxL)*setL)+4 +2)*2+7, (radians(90)-PI/input[0].length)+radians(2.5f), (radians(90)+PI/input[0].length)-radians(2.5f));
+                arc(0, 0, (50 + ((input[0][j]/maxL)*setL) + ((input[1][j]/maxL)*setL) + ((input[2][j]/maxL)*setL)+4 +2)*2+7, 
+                    (50 + ((input[0][j]/maxL)*setL) + ((input[1][j]/maxL)*setL) + ((input[2][j]/maxL)*setL)+4 +2)*2+7, 
+                    (radians(90)-PI/input[0].length)+radians(2.5f), (radians(90)+PI/input[0].length)-radians(2.5f));
 
 
 
