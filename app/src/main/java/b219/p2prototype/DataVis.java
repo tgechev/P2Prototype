@@ -27,7 +27,7 @@ public class DataVis extends PApplet {
 
     int pW = 18;
 
-    int pC = 20/2;
+    int pC = pW/2;
 
     int iR = 80;
     String[] gNames;
