@@ -25,7 +25,11 @@ public class DataVis extends PApplet {
 
     int[][] input;
 
+    int pW = 18;
 
+    int pC = 20/2;
+
+    int iR = 80;
     String[] gNames;
 
     int[] gColours = new int[21];
@@ -93,7 +97,7 @@ public class DataVis extends PApplet {
         //textSize(40*ratio);
 
         //Moves everything to the middle
-        translate(width/2, height/4);
+        translate(width/2, (height/4)+50);
 
         //Counting & calculating loops
 
@@ -134,16 +138,16 @@ public class DataVis extends PApplet {
 
                     if (i == 0) {
                         fill(255, 0, 0);
-                        rect(-5, 50, 10, ((input[i][j]/maxL)*setL)+2);
+                        rect(-pC, iR, pW, ((input[i][j]/maxL)*setL)+2);
                     } else {
                         if (i == 1) {
                             totalInput[j] = ((input[0][j]/maxL)*setL+2);
                             fill(Color.parseColor("#FFF700"));
-                            rect(-5, 50 + totalInput[j]+2, 10, ((input[i][j]/maxL)*setL)+2);
+                            rect(-pC, iR + totalInput[j]+2, pW, ((input[i][j]/maxL)*setL)+2);
                         } else if (i == 2) {
                             totalInput[j] = ((input[0][j]/maxL)*setL) + ((input[1][j]/maxL)*setL)+6;
                             fill(0, 255, 0);
-                            rect(-5, 50 + totalInput[j]+2, 10, ((input[i][j]/maxL)*setL));
+                            rect(-pC, iR + totalInput[j]+2, pW, ((input[i][j]/maxL)*setL));
 
                         }
                     }
@@ -156,9 +160,9 @@ public class DataVis extends PApplet {
 
 
 
-                strokeWeight(7);
-                arc(0, 0, (50 + ((input[0][j]/maxL)*setL) + ((input[1][j]/maxL)*setL) + ((input[2][j]/maxL)*setL)+4 +2)*2+7, 
-                    (50 + ((input[0][j]/maxL)*setL) + ((input[1][j]/maxL)*setL) + ((input[2][j]/maxL)*setL)+4 +2)*2+7, 
+                strokeWeight(15);
+                arc(0, 0, (iR + ((input[0][j]/maxL)*setL) + ((input[1][j]/maxL)*setL) + ((input[2][j]/maxL)*setL)+4 +2)*2+15,
+                    (iR + ((input[0][j]/maxL)*setL) + ((input[1][j]/maxL)*setL) + ((input[2][j]/maxL)*setL)+4 +2)*2+15,
                     (radians(90)-PI/input[0].length)+radians(2.5f), (radians(90)+PI/input[0].length)-radians(2.5f));
 
 
@@ -169,70 +173,123 @@ public class DataVis extends PApplet {
         }
 
         //Code for the Legend
-        translate(-width/2+30, height/4);
+        translate(-width/2+30, height/4+130);
 
         int legCount = 0;
         int lineOffSet = 0;
-        int squareOffSet = 125;
-        int squareWH = ratio*100;
-        int lineStart = 30;
-        int textAlign = 15;
+        int squareOffSet = (125*2)+50;
+        int squareWH = ratio*50;
+        int lineStart = 58;
+        int textAlign = 40;
+        textSize(40);
+
+        for (int i = 0; i < 3; i++) {
+            if(i == 0){
+                noStroke();
+                fill(255, 0, 0);
+                rect(0+(legCount*squareOffSet), 0 + lineOffSet-60, squareWH, squareWH);
+                fill(0);
+                text("Bad", lineStart+(legCount*squareOffSet), textAlign + lineOffSet-60);
+                legCount++;
+            }
+            if(i == 1){
+                noStroke();
+                fill(Color.parseColor("#FFF700"));
+                rect(0+(legCount*squareOffSet), 0 + lineOffSet-60, squareWH, squareWH);
+                fill(0);
+                text("Neutral", lineStart+(legCount*squareOffSet), textAlign + lineOffSet-60);
+                legCount++;
+            }
+            if(i == 2){
+                noStroke();
+                fill(0, 255, 0);
+                rect(0+(legCount*squareOffSet), 0 + lineOffSet-60, squareWH, squareWH);
+                fill(0);
+                text("Good", lineStart+(legCount*squareOffSet), textAlign + lineOffSet-60);
+                legCount++;
+            }
+        }
+        legCount = 0;
+
+
         for (int i = 0; i < input[0].length; i++) {
 
-            if (i < 4) {
-                stroke(gColours[i]);
-                noFill();
+            if (i < 3) {
+                noStroke();
+                fill(gColours[i]);
                 rect(0+(legCount*squareOffSet), 0 + lineOffSet, squareWH, squareWH);
                 fill(0);
                 text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign + lineOffSet);
                 legCount++;
-                if (legCount == 4) {
+                if (legCount == 3) {
                     legCount = 0;
-                    lineOffSet += 30;
+                    lineOffSet += 60;
                 }
-            } else if (i > 3 && i < 8) {
-                stroke(gColours[i]);
-                noFill();
+            } else if (i > 2 && i < 6) {
+                noStroke();
+                fill(gColours[i]);
                 rect(0+(legCount*squareOffSet), lineOffSet, squareWH, squareWH);
                 fill(0);
                 text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet);
                 legCount++;
-                if (legCount == 4) {
+                if (legCount == 3) {
                     legCount = 0;
-                    lineOffSet += 30;
+                    lineOffSet += 60;
                 }
-            } else if (i > 7 && i < 12) {
-                stroke(gColours[i]);
-                noFill();
+            } else if (i > 5 && i < 9) {
+                noStroke();
+                fill(gColours[i]);
                 rect(0+(legCount*squareOffSet), lineOffSet, squareWH, squareWH);
                 fill(0);
                 text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet);
                 legCount++;
-                if (legCount == 4) {
+                if (legCount == 3) {
                     legCount = 0;
-                    lineOffSet += 30;
+                    lineOffSet += 60;
                 }
-            } else if (i > 11 && i < 16) {
-                stroke(gColours[i]);
-                noFill();
+            } else if (i > 8 && i < 12) {
+                noStroke();
+                fill(gColours[i]);
                 rect(0+(legCount*squareOffSet), lineOffSet, squareWH, squareWH);
                 fill(0);
                 text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet);
                 legCount++;
-                if (legCount == 4) {
+                if (legCount == 3) {
                     legCount = 0;
-                    lineOffSet += 30;
+                    lineOffSet += 60;
                 }
-            } else if (i > 15 && i < 20) {
-                stroke(gColours[i]);
-                noFill();
+            } else if (i > 11 && i < 15) {
+                noStroke();
+                fill(gColours[i]);
                 rect(0+(legCount*squareOffSet), lineOffSet, squareWH, squareWH);
                 fill(0);
                 text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet);
                 legCount++;
-                if (legCount == 4) {
+                if (legCount == 3) {
                     legCount = 0;
-                    lineOffSet += 30;
+                    lineOffSet += 60;
+                }
+            } else if (i > 14 && i < 18) {
+                noStroke();
+                fill(gColours[i]);
+                rect(0+(legCount*squareOffSet), lineOffSet, squareWH, squareWH);
+                fill(0);
+                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet);
+                legCount++;
+                if (legCount == 3) {
+                    legCount = 0;
+                    lineOffSet += 60;
+                }
+            } else if (i > 17) {
+                noStroke();
+                fill(gColours[i]);
+                rect(0 + (legCount * squareOffSet), lineOffSet, squareWH, squareWH);
+                fill(0);
+                text(gNames[sortedList.get(i).getGenre()], lineStart + (legCount * squareOffSet), textAlign + lineOffSet);
+                legCount++;
+                if (legCount == 3) {
+                    legCount = 0;
+                    lineOffSet += 60;
                 }
             }
         }
