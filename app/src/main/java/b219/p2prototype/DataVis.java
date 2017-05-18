@@ -27,7 +27,7 @@ public class DataVis extends PApplet {
 
     int pW = 18;
 
-    int pC = 20/2;
+    int pC = pW/2;
 
     int iR = 80;
     String[] gNames;
@@ -217,9 +217,9 @@ public class DataVis extends PApplet {
             if (i < 3) {
                 noStroke();
                 fill(gColours[i]);
-                rect(0+(legCount*squareOffSet), 0 + lineOffSet, squareWH, squareWH);
+                rect(0+(legCount*squareOffSet), lineOffSet+35, squareWH, squareWH);
                 fill(0);
-                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign + lineOffSet);
+                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign + lineOffSet+35);
                 legCount++;
                 if (legCount == 3) {
                     legCount = 0;
@@ -228,9 +228,9 @@ public class DataVis extends PApplet {
             } else if (i > 2 && i < 6) {
                 noStroke();
                 fill(gColours[i]);
-                rect(0+(legCount*squareOffSet), lineOffSet, squareWH, squareWH);
+                rect(0+(legCount*squareOffSet), lineOffSet+35, squareWH, squareWH);
                 fill(0);
-                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet);
+                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet+35);
                 legCount++;
                 if (legCount == 3) {
                     legCount = 0;
@@ -239,9 +239,9 @@ public class DataVis extends PApplet {
             } else if (i > 5 && i < 9) {
                 noStroke();
                 fill(gColours[i]);
-                rect(0+(legCount*squareOffSet), lineOffSet, squareWH, squareWH);
+                rect(0+(legCount*squareOffSet), lineOffSet+35, squareWH, squareWH);
                 fill(0);
-                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet);
+                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet+35);
                 legCount++;
                 if (legCount == 3) {
                     legCount = 0;
@@ -250,9 +250,9 @@ public class DataVis extends PApplet {
             } else if (i > 8 && i < 12) {
                 noStroke();
                 fill(gColours[i]);
-                rect(0+(legCount*squareOffSet), lineOffSet, squareWH, squareWH);
+                rect(0+(legCount*squareOffSet), lineOffSet+35, squareWH, squareWH);
                 fill(0);
-                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet);
+                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet+35);
                 legCount++;
                 if (legCount == 3) {
                     legCount = 0;
@@ -261,9 +261,9 @@ public class DataVis extends PApplet {
             } else if (i > 11 && i < 15) {
                 noStroke();
                 fill(gColours[i]);
-                rect(0+(legCount*squareOffSet), lineOffSet, squareWH, squareWH);
+                rect(0+(legCount*squareOffSet), lineOffSet+35, squareWH, squareWH);
                 fill(0);
-                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet);
+                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet+35);
                 legCount++;
                 if (legCount == 3) {
                     legCount = 0;
@@ -272,9 +272,9 @@ public class DataVis extends PApplet {
             } else if (i > 14 && i < 18) {
                 noStroke();
                 fill(gColours[i]);
-                rect(0+(legCount*squareOffSet), lineOffSet, squareWH, squareWH);
+                rect(0+(legCount*squareOffSet), lineOffSet+35, squareWH, squareWH);
                 fill(0);
-                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet);
+                text(gNames[sortedList.get(i).getGenre()], lineStart+(legCount*squareOffSet), textAlign+lineOffSet+35);
                 legCount++;
                 if (legCount == 3) {
                     legCount = 0;
@@ -283,9 +283,9 @@ public class DataVis extends PApplet {
             } else if (i > 17) {
                 noStroke();
                 fill(gColours[i]);
-                rect(0 + (legCount * squareOffSet), lineOffSet, squareWH, squareWH);
+                rect(0 + (legCount * squareOffSet), lineOffSet+35, squareWH, squareWH);
                 fill(0);
-                text(gNames[sortedList.get(i).getGenre()], lineStart + (legCount * squareOffSet), textAlign + lineOffSet);
+                text(gNames[sortedList.get(i).getGenre()], lineStart + (legCount * squareOffSet), textAlign + lineOffSet+35);
                 legCount++;
                 if (legCount == 3) {
                     legCount = 0;
