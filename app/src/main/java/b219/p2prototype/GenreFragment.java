@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,7 @@ public class GenreFragment extends Fragment {
 
     OnEntryRegisteredListener myCallBack;
 
-    public interface OnEntryRegisteredListener{
+    interface OnEntryRegisteredListener{
         void onEntryRegistered(ArrayList<UserInput> userInput);
     }
 
@@ -84,6 +85,7 @@ public class GenreFragment extends Fragment {
                                 }
                             })
                             .setIcon(android.R.drawable.ic_dialog_info)
+                            .setCancelable(false)
                             .show();
                 }
 

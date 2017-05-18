@@ -122,12 +122,12 @@ public class MainActivity extends AppCompatActivity implements GenreFragment.OnE
             Intent tutIntent = new Intent(this, TutorialActivity.class);
             startActivity(tutIntent);
         }
-        else if(id == R.id.action_draw_vis_test){
+        /*else if(id == R.id.action_draw_vis_test){
             mViewPager.getAdapter().notifyDataSetChanged();
         }
         else{
             userIn = new ArrayList<UserInput>();
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }

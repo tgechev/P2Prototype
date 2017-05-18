@@ -18,13 +18,6 @@ public class MoodFragment extends Fragment {
     static final String MOOD_ID = "MOOD_ID";
     Fragment genreFrag;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-
-
     // Inflate the view for the fragment based on layout XML
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
